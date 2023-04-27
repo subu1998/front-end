@@ -1,29 +1,30 @@
 pipeline {
-    agent any
-
-    tools {
-      nodejs 'nodejs-4.8.6'  
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+        echo 'Building..'
+        sh 'npm install'
+      }
     }
 
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-                sh 'npm install'
-            }
-            }
-
-        stage('Test') {
-            steps {
-                echo 'Testing'
-                sh 'npm test'
-            }
-        }
-        stage('Package') {
-            steps {
-                echo 'Packaging....'
-                sh 'npm run package'
-            }
-        }
+    stage('Test') {
+      steps {
+        echo 'Testing'
+        sh 'npm test'
+      }
     }
+
+    stage('Package') {
+      steps {
+        echo 'Packaging....'
+        sh 'npm run package'
+        archiveArtifacts '**distribution/*.zip'
+      }
+    }
+
+  }
+  tools {
+    nodejs 'nodejs-4.8.6'
+  }
 }
