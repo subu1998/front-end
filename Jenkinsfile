@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'schoolofdevops/frontend'
+    }
+
+  }
   stages {
     stage('Build') {
       steps {
