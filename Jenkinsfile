@@ -25,6 +25,7 @@ pipeline {
       steps {
         echo 'Packaging....'
         sh 'npm install'
+        sh 'sudo apt install zip -y'
         sh 'npm run package'
         archiveArtifacts '**distribution/*.zip'
       }
