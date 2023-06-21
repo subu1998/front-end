@@ -30,7 +30,4 @@ pipeline {
     }
 
   }
-  tools {
-    nodejs 'nodejs-4.8.6'
-  }
 }
