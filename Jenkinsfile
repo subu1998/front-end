@@ -31,6 +31,7 @@ pipeline {
           docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin') {
             def dockerImage = docker.build("subbu26/frontend:v${env.BUILD_ID}", "./")
             dockerImage.push()
+            dockerImage.push("latest")
 
           }
         }
